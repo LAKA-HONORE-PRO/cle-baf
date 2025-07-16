@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+:root{
+    --purple-color : #4b21c3;
+    --blue-color : #126cb8;
+}
+
+.purpleText{
+    color: var(--purple-color);
+}
+
+.blueText{
+    color: var(--blue-color);
+}
+
+.bg-purpleColor{
+    background-color: var(--purple-color);
+}
+
+.bg-blueColor{
+    background-color: var(--blue-color);
+}
