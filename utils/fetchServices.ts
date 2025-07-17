@@ -10,8 +10,8 @@ export interface RequestResponse {
   datas?: any;
 }
 
-const baseUrl = "https://admin.insamtechs.com/api";
-// const baseUrl = "http://127.0.0.1:8001/api";
+const baseUrl = "http://127.0.0.1:8001/api/";
+// const baseUrl = "https://admin.cle-baf.com/api/";
 
 // let options: RequestInit = {
 //   headers: {

@@ -1,13 +1,31 @@
 import { useState } from "react";
-import { AiOutlineClose, AiOutlineMenu, AiOutlineExport  } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineMenu, AiOutlineExport } from "react-icons/ai";
 import { BiChevronDown } from "react-icons/bi";
 import { MdAccountCircle } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
+import { FetchService } from "../../../../../utils/fetchServices";
+import { useQuery } from "@tanstack/react-query";
+import Loader from "../../../loader/Loader";
 
 export default function Navbar() {
     const [mobileNav, setMobileNav] = useState(false);
     const [cours, setCours] = useState(false);
     const description = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga repellendus distinctio repudiandae. Eveniet, illum sunt laboriosam amet consequuntur odit molestias voluptatibus tempora dicta en";
+
+
+    async function getLevels() {
+        const response = await FetchService.fetch("levels", "get");
+        if (response.error) {
+            console.log(response);
+        }
+
+        return response.datas;
+    }
+
+    const { isLoading, data } = useQuery({ queryKey: ["levels"], queryFn: getLevels });
+
+    if (isLoading || !data) return <Loader />
+
 
     return (
         <>
@@ -35,12 +53,12 @@ export default function Navbar() {
                                             <span className="text-purple-700 font-semibold group-hover:text-white transition">
                                                 Accédez à votre vidéothèque
                                             </span>
-                                            <AiOutlineExport className="hidden group-hover:flex animate__animated animate__slideInLeft duration-300 text-white text-xl"/>
+                                            <AiOutlineExport className="hidden group-hover:flex animate__animated animate__slideInLeft duration-300 text-white text-xl" />
                                         </Link>
                                     </div>
 
 
-                                    <Link to={'/details-level/niveau-debutant'} onClick={()=>setCours(!cours)} className="flex flex-col gap-y-2 hover:bg-gray-300 justify-center transition-all items-start p-3 rounded-md">
+                                    <Link to={'/details-level/niveau-debutant'} onClick={() => setCours(!cours)} className="flex flex-col gap-y-2 hover:bg-gray-300 justify-center transition-all items-start p-3 rounded-md">
                                         <h2 className="font-semibold text-purple-700 text-xl">
                                             Niveau débutant
                                         </h2>
@@ -53,7 +71,7 @@ export default function Navbar() {
                                     </Link>
 
 
-                                    <Link to={'/details-level/niveau-intermediaire'} onClick={()=>setCours(!cours)} className="flex flex-col gap-y-2 hover:bg-gray-300 justify-center transition-all items-start p-3 rounded-md">
+                                    <Link to={'/details-level/niveau-intermediaire'} onClick={() => setCours(!cours)} className="flex flex-col gap-y-2 hover:bg-gray-300 justify-center transition-all items-start p-3 rounded-md">
                                         <h2 className="font-semibold text-purple-700 text-xl">
                                             Niveau intermédiaire
                                         </h2>
@@ -67,7 +85,7 @@ export default function Navbar() {
 
 
 
-                                    <Link to={'/details-level/niveau-expert'} onClick={()=>setCours(!cours)} className="flex flex-col gap-y-2 hover:bg-gray-300 justify-center items-start p-3 transition-all rounded-md">
+                                    <Link to={'/details-level/niveau-expert'} onClick={() => setCours(!cours)} className="flex flex-col gap-y-2 hover:bg-gray-300 justify-center items-start p-3 transition-all rounded-md">
                                         <h2 className="font-semibold text-purple-700 text-xl">
                                             Niveau expert
                                         </h2>
@@ -92,14 +110,14 @@ export default function Navbar() {
 
                 <ul className="hidden md:flex flex-row justify-center items-center gap-x-10 px-6">
                     <li>
-                        <NavLink to={'/'} onClick={()=>setCours(false)} className={`text-black font-semibold hover:text-purple-700 transition`}>
+                        <NavLink to={'/'} onClick={() => setCours(false)} className={`text-black font-semibold hover:text-purple-700 transition`}>
                             Accueil
                         </NavLink>
                     </li>
 
 
                     <li>
-                        <NavLink to={'/about'} onClick={()=>setCours(false)} className={`text-black font-semibold hover:text-purple-700 transition`}>
+                        <NavLink to={'/about'} onClick={() => setCours(false)} className={`text-black font-semibold hover:text-purple-700 transition`}>
                             A propos
                         </NavLink>
                     </li>
@@ -115,14 +133,14 @@ export default function Navbar() {
 
 
                     <li>
-                        <NavLink to={'/'} onClick={()=>setCours(false)} className={`text-black font-semibold hover:text-purple-700 transition`}>
+                        <NavLink to={'/'} onClick={() => setCours(false)} className={`text-black font-semibold hover:text-purple-700 transition`}>
                             Contact
                         </NavLink>
                     </li>
 
 
                     <li>
-                        <NavLink to={'/login'} onClick={()=>setCours(false)} className={`flex flex-row gap-x-2 bg-purple-700 py-2 px-4 rounded-md transition`}>
+                        <NavLink to={'/login'} onClick={() => setCours(false)} className={`flex flex-row gap-x-2 bg-purple-700 py-2 px-4 rounded-md transition`}>
                             <span className="text-white font-semibold">
                                 Compte
                             </span>
