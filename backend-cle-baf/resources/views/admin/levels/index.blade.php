@@ -3,7 +3,7 @@
 @section('content')
 <div class="container mx-auto px-4 py-6">
     <div class="flex justify-between items-center mb-6">
-        <h1 class="text-2xl font-bold">Gestion des Leçons</h1>
+        <h1 class="text-2xl font-bold">Gestion des Niveau</h1>
         <button onclick="openModal('levelModal')" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Ajouter un niveau
         </button>

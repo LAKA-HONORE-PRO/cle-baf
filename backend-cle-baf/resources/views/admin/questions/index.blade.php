@@ -14,16 +14,16 @@
             <thead>
                 <tr>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Étudiant
+                        Intitulé
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Niveau
+                        type
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Date Inscription
+                        Examen
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Statut
+                        Nombre de points
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         Actions
@@ -31,19 +31,19 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($appartenirs as $appartenir)
+                @foreach($questions as $question)
                 <tr>
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        {{ $appartenir->student->nom }} {{ $appartenir->student->prenom }}
+                        {{ $question->intitule }}
                     </td>
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        {{ $appartenir->level->intitule ?? 'N/A' }}
+                        {{ $question->type }}
                     </td>
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        {{ $appartenir->date_inscription->format('d/m/Y') }}
+                        {{ $question->examen->intitule ?? 'N/A' }}
                     </td>
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        {{ $appartenir->statut }}
+                        {{ $question->nbre_points }}
                     </td>
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <button class="text-blue-500 hover:text-blue-700 mr-2">
