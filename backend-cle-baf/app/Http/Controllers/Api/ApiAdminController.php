@@ -42,7 +42,7 @@ class ApiAdminController extends Controller
             'description' => 'required',
             'objectifs' => 'required',
         ]);
-        
+
         $level = Level::create($validated);
         return new LevelResource($level);
     }
@@ -54,7 +54,7 @@ class ApiAdminController extends Controller
             'description' => 'required',
             'objectifs' => 'required',
         ]);
-        
+
         $level = Level::findOrFail($id);
         $level->update($validated);
         return new LevelResource($level);
@@ -68,15 +68,11 @@ class ApiAdminController extends Controller
     }
 
     public function showLevelBySlug($slug)
-{
-    $level = Level::with(['units', 'appartenirs'])->where('slug', $slug)->firstOrFail();
-    
-    if (request()->expectsJson()) {
+    {
+        $level = Level::with(['units', 'appartenirs'])->where('slug', $slug)->firstOrFail();
+
         return new LevelResource($level);
     }
-    
-    return view('admin.levels.show', compact('level'));
-}
 
     // Students
     public function indexStudents(Request $request)
@@ -96,7 +92,7 @@ class ApiAdminController extends Controller
             'email' => 'required|email|unique:students,email',
             'password' => 'required|string|min:6',
         ]);
-        
+
         $validated['password'] = bcrypt($validated['password']);
         $student = Student::create($validated);
         return new StudentResource($student);
@@ -111,11 +107,11 @@ class ApiAdminController extends Controller
             'email' => 'required|email|unique:students,email,' . $id,
             'password' => 'sometimes|string|min:6',
         ]);
-        
+
         if (isset($validated['password'])) {
             $validated['password'] = bcrypt($validated['password']);
         }
-        
+
         $student = Student::findOrFail($id);
         $student->update($validated);
         return new StudentResource($student);
@@ -129,15 +125,11 @@ class ApiAdminController extends Controller
     }
 
     public function showStudentBySlug($slug)
-{
-    $level = Student::all()->where('slug', $slug)->firstOrFail();
-    
-    if (request()->expectsJson()) {
-        return new LevelResource($level);
+    {
+        $level = Student::all()->where('slug', $slug)->firstOrFail();
+
+        return new StudentResource($level);
     }
-    
-    return view('admin.student.show', compact('level'));
-}
 
     // Units
     public function indexUnits(Request $request)
@@ -156,7 +148,7 @@ class ApiAdminController extends Controller
             'objectifs' => 'required',
             'level_id' => 'required|exists:levels,id',
         ]);
-        
+
         $unit = Unit::create($validated);
         return new UnitResource($unit);
     }
@@ -169,7 +161,7 @@ class ApiAdminController extends Controller
             'objectifs' => 'required',
             'level_id' => 'required|exists:levels,id',
         ]);
-        
+
         $unit = Unit::findOrFail($id);
         $unit->update($validated);
         return new UnitResource($unit);
@@ -180,6 +172,13 @@ class ApiAdminController extends Controller
         $unit = Unit::findOrFail($id);
         $unit->delete();
         return response()->json(['message' => 'Unit deleted']);
+    }
+
+    public function showUnitBySlug($slug)
+    {
+        $level = Unit::with('level')->where('slug', $slug)->firstOrFail();
+
+        return new UnitResource($level);
     }
 
     // Examens
@@ -204,7 +203,7 @@ class ApiAdminController extends Controller
             'nbre_points' => 'required|integer',
             'nbre_passage' => 'required|integer',
         ]);
-        
+
         $examen = Examen::create($validated);
         return new ExamenResource($examen);
     }
@@ -220,7 +219,7 @@ class ApiAdminController extends Controller
             'nbre_points' => 'required|integer',
             'nbre_passage' => 'required|integer',
         ]);
-        
+
         $examen = Examen::findOrFail($id);
         $examen->update($validated);
         return new ExamenResource($examen);
@@ -231,6 +230,13 @@ class ApiAdminController extends Controller
         $examen = Examen::findOrFail($id);
         $examen->delete();
         return response()->json(['message' => 'Examen deleted']);
+    }
+
+    public function showExamenBySlug($slug)
+    {
+        $level = Examen::with('unit')->where('slug', $slug)->firstOrFail();
+
+        return new ExamenResource($level);
     }
 
     // Questions
@@ -250,7 +256,7 @@ class ApiAdminController extends Controller
             'examen_id' => 'required|exists:examens,id',
             'nbre_points' => 'required|integer',
         ]);
-        
+
         $question = Question::create($validated);
         return new QuestionResource($question);
     }
@@ -263,7 +269,7 @@ class ApiAdminController extends Controller
             'examen_id' => 'required|exists:examens,id',
             'nbre_points' => 'required|integer',
         ]);
-        
+
         $question = Question::findOrFail($id);
         $question->update($validated);
         return new QuestionResource($question);
@@ -274,6 +280,13 @@ class ApiAdminController extends Controller
         $question = Question::findOrFail($id);
         $question->delete();
         return response()->json(['message' => 'Question deleted']);
+    }
+
+    public function showQuestionBySlug($slug)
+    {
+        $level = Question::with('examen')->where('slug', $slug)->firstOrFail();
+
+        return new QuestionResource($level);
     }
 
     // Answers
@@ -293,7 +306,7 @@ class ApiAdminController extends Controller
             'is_correct' => 'required|boolean',
             'question_id' => 'required|exists:questions,id',
         ]);
-        
+
         $answer = Answer::create($validated);
         return new AnswerResource($answer);
     }
@@ -306,7 +319,7 @@ class ApiAdminController extends Controller
             'is_correct' => 'required|boolean',
             'question_id' => 'required|exists:questions,id',
         ]);
-        
+
         $answer = Answer::findOrFail($id);
         $answer->update($validated);
         return new AnswerResource($answer);
@@ -317,6 +330,13 @@ class ApiAdminController extends Controller
         $answer = Answer::findOrFail($id);
         $answer->delete();
         return response()->json(['message' => 'Answer deleted']);
+    }
+
+    public function showAnswerBySlug($slug)
+    {
+        $level = Answer::with('question')->where('slug', $slug)->firstOrFail();
+
+        return new AnswerResource($level);
     }
 
     // Lessons
@@ -335,10 +355,10 @@ class ApiAdminController extends Controller
             'description' => 'required',
             'unit_id' => 'required|exists:units,id',
             'type' => 'required|string', // Ajoute 'type' manquant dans la validation
-        'lien' => 'required|url',    // Ajoute 'lien' manquant dans la validation
-        'objectifs' => 'required',   // Ajoute 'objectifs' manquant dans la validation
+            'lien' => 'required|url',    // Ajoute 'lien' manquant dans la validation
+            'objectifs' => 'required',   // Ajoute 'objectifs' manquant dans la validation
         ]);
-        
+
         $lesson = Lesson::create($validated);
         return new LessonResource($lesson);
     }
@@ -351,7 +371,7 @@ class ApiAdminController extends Controller
             'unit_id' => 'required|exists:units,id',
             'ordre' => 'required|integer',
         ]);
-        
+
         $lesson = Lesson::findOrFail($id);
         $lesson->update($validated);
         return new LessonResource($lesson);
@@ -362,6 +382,13 @@ class ApiAdminController extends Controller
         $lesson = Lesson::findOrFail($id);
         $lesson->delete();
         return response()->json(['message' => 'Lesson deleted']);
+    }
+
+    public function showLessonBySlug($slug)
+    {
+        $level = Lesson::with('unit')->where('slug', $slug)->firstOrFail();
+
+        return new LessonResource($level);
     }
 
     // Appartenir
@@ -381,7 +408,7 @@ class ApiAdminController extends Controller
             'date_inscription' => 'required|date',
             'statut' => 'required|string',
         ]);
-        
+
         $appartenir = Appartenir::create($validated);
         return new AppartenirResource($appartenir);
     }
@@ -394,7 +421,7 @@ class ApiAdminController extends Controller
             'date_inscription' => 'required|date',
             'statut' => 'required|string',
         ]);
-        
+
         $appartenir = Appartenir::findOrFail($id);
         $appartenir->update($validated);
         return new AppartenirResource($appartenir);
@@ -405,6 +432,13 @@ class ApiAdminController extends Controller
         $appartenir = Appartenir::findOrFail($id);
         $appartenir->delete();
         return response()->json(['message' => 'Appartenir deleted']);
+    }
+
+    public function showAppartenirBySlug($slug)
+    {
+        $level = Appartenir::with(['student', 'level'])->where('slug', $slug)->firstOrFail();
+
+        return new AppartenirResource($level);
     }
 
     // Composer
@@ -422,7 +456,7 @@ class ApiAdminController extends Controller
             'question_id' => 'required|exists:questions,id',
             'answer_id' => 'required|exists:answers,id',
         ]);
-        
+
         $composer = Composer::create($validated);
         return new ComposerResource($composer);
     }
@@ -433,7 +467,7 @@ class ApiAdminController extends Controller
             'question_id' => 'required|exists:questions,id',
             'answer_id' => 'required|exists:answers,id',
         ]);
-        
+
         $composer = Composer::findOrFail($id);
         $composer->update($validated);
         return new ComposerResource($composer);
@@ -444,6 +478,13 @@ class ApiAdminController extends Controller
         $composer = Composer::findOrFail($id);
         $composer->delete();
         return response()->json(['message' => 'Composer deleted']);
+    }
+
+    public function showComposerBySlug($slug)
+    {
+        $level = Composer::with(['question', 'answer'])->where('slug', $slug)->firstOrFail();
+
+        return new ComposerResource($level);
     }
 
     // Utility methods

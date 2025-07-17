@@ -77,54 +77,63 @@ Route::prefix('api')->group(function () {
     Route::post('/levels', [ApiAdminController::class, 'storeLevel']);
     Route::put('/levels/{id}', [ApiAdminController::class, 'updateLevel']);
     Route::delete('/levels/{id}', [ApiAdminController::class, 'destroyLevel']);
+    Route::get('/levels/slug/{slug}', [ApiAdminController::class, 'showLevelBySlug']);
 
     // Students
     Route::get('/students', [ApiAdminController::class, 'indexStudents']);
     Route::post('/students', [ApiAdminController::class, 'storeStudent']);
     Route::put('/students/{id}', [ApiAdminController::class, 'updateStudent']);
     Route::delete('/students/{id}', [ApiAdminController::class, 'destroyStudent']);
+    Route::get('/students/slug/{slug}', [ApiAdminController::class, 'showStudentBySlug']);
 
     // Units
     Route::get('/units', [ApiAdminController::class, 'indexUnits']);
     Route::post('/units', [ApiAdminController::class, 'storeUnit']);
     Route::put('/units/{id}', [ApiAdminController::class, 'updateUnit']);
     Route::delete('/units/{id}', [ApiAdminController::class, 'destroyUnit']);
+    Route::get('/units/slug/{slug}', [ApiAdminController::class, 'showUnitBySlug']);
 
     // Examens
     Route::get('/examens', [ApiAdminController::class, 'indexExamens']);
     Route::post('/examens', [ApiAdminController::class, 'storeExamen']);
     Route::put('/examens/{id}', [ApiAdminController::class, 'updateExamen']);
     Route::delete('/examens/{id}', [ApiAdminController::class, 'destroyExamen']);
+    Route::get('/examens/slug/{slug}', [ApiAdminController::class, 'showExamenBySlug']);
 
     // Questions
     Route::get('/questions', [ApiAdminController::class, 'indexQuestions']);
     Route::post('/questions', [ApiAdminController::class, 'storeQuestion']);
     Route::put('/questions/{id}', [ApiAdminController::class, 'updateQuestion']);
     Route::delete('/questions/{id}', [ApiAdminController::class, 'destroyQuestion']);
+    Route::get('/questions/slug/{slug}', [ApiAdminController::class, 'showQuestionBySlug']);
 
     // Answers
     Route::get('/answers', [ApiAdminController::class, 'indexAnswers']);
     Route::post('/answers', [ApiAdminController::class, 'storeAnswer']);
     Route::put('/answers/{id}', [ApiAdminController::class, 'updateAnswer']);
     Route::delete('/answers/{id}', [ApiAdminController::class, 'destroyAnswer']);
+    Route::get('/answers/slug/{slug}', [ApiAdminController::class, 'showAnswerBySlug']);
 
     // Lessons
     Route::get('/lessons', [ApiAdminController::class, 'indexLessons']);
     Route::post('/lessons', [ApiAdminController::class, 'storeLesson']);
     Route::put('/lessons/{id}', [ApiAdminController::class, 'updateLesson']);
     Route::delete('/lessons/{id}', [ApiAdminController::class, 'destroyLesson']);
+    Route::get('/lessons/slug/{slug}', [ApiAdminController::class, 'showLessonBySlug']);
 
     // Appartenirs
     Route::get('/appartenirs', [ApiAdminController::class, 'indexAppartenir']);
     Route::post('/appartenirs', [ApiAdminController::class, 'storeAppartenir']);
     Route::put('/appartenirs/{id}', [ApiAdminController::class, 'updateAppartenir']);
     Route::delete('/appartenirs/{id}', [ApiAdminController::class, 'destroyAppartenir']);
+    Route::get('/appartenirs/slug/{slug}', [ApiAdminController::class, 'showAppartenirBySlug']);
 
     // Composers
     Route::get('/composers', [ApiAdminController::class, 'indexComposer']);
     Route::post('/composers', [ApiAdminController::class, 'storeComposer']);
     Route::put('/composers/{id}', [ApiAdminController::class, 'updateComposer']);
     Route::delete('/composers/{id}', [ApiAdminController::class, 'destroyComposer']);
+    Route::get('/composers/slug/{slug}', [ApiAdminController::class, 'showComposerBySlug']);
 
     // Utility routes
     Route::get('/levels/{levelId}/units', [ApiAdminController::class, 'getLevelUnits']);
