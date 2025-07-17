@@ -10,7 +10,7 @@ export default function Navbar() {
         <nav className="flex flex-row w-full h-16 top-0 sticky z-30 bg-gray-200 justify-between items-center px-6">
 
             <NavLink to={'/'} className="text-black font-semibold">
-                Cle-Baf
+                <img src="assets/img/logo.png" className="w-28" alt="Logo" />
             </NavLink>
 
             <ul className="hidden md:flex flex-row justify-center items-center gap-x-10">
@@ -42,7 +42,7 @@ export default function Navbar() {
 
 
                 <li>
-                    <NavLink to={'/'} className={`flex flex-row gap-x-2 bg-purpleColor py-2 px-4 rounded-md transition`}>
+                    <NavLink to={'/login'} className={`flex flex-row gap-x-2 bg-purpleColor py-2 px-4 rounded-md transition`}>
                         <span className="text-white font-semibold">
                             Compte
                         </span>
@@ -93,7 +93,7 @@ export default function Navbar() {
 
 
                     <li>
-                        <NavLink to={'/'} onClick={()=>setMobileNav(!mobileNav)} className={`flex flex-row gap-x-2 bg-purpleColor py-2 px-4 rounded-md transition`}>
+                        <NavLink to={'/login'} onClick={()=>setMobileNav(!mobileNav)} className={`flex flex-row gap-x-2 bg-purpleColor py-2 px-4 rounded-md transition`}>
                             <span className="text-white font-semibold">
                                 Compte
                             </span>
