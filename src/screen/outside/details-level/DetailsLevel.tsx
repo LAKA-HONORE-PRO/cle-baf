@@ -1,6 +1,7 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import HeroPage from "../components/hero-page/HeroPage";
 import DropDownUnit from "./components/dropdown-unit/DropDownUnit";
+import { BiLogIn } from "react-icons/bi";
 
 export default function DetailsLevel() {
     const { slug } = useParams();
@@ -108,14 +109,23 @@ export default function DetailsLevel() {
                 <div className="flex flex-col w-full md:w-4/6 gap-y-10">
                     <div className="flex flex-col gap-y-6 bg-white p-6 rounded-md">
 
-                        <div className="flex flex-col gap-y-2">
-                            <h2 className="font-semibold text-purple-700 text-2xl">
-                                Description du niveau.
-                            </h2>
+                        <div className="flex flex-col w-full gap-y-2">
+                            <div className="flex flex-col-reverse md:flex-row w-full gap-y-2 md:gap-y-0 justify-between items-start md:items-center">
+                                <h2 className="font-semibold text-purple-700 text-sm md:text-2xl">
+                                    Description du niveau.
+                                </h2>
+
+                                <Link to={'/login'} className="flex flex-row items-center gap-x-2 px-2 md:px-6 py-2 border-[1px] border-purple-700 rounded-md hover:bg-purple-700 transition text-sm group">
+                                    <span className="text-purple-700 transition font-semibold group-hover:text-white">
+                                        Connectez-vous
+                                    </span>
+                                    <BiLogIn className="hidden group-hover:flex animate__animated animate__slideInLeft duration-300 text-white text-xl" />
+                                </Link>
+                            </div>
                             <div className="flex h-[2px] bg-purple-700 w-full" />
                         </div>
 
-                        <p className="text-justify text-black">
+                        <p className="text-justify text-black text-sm">
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus quae expedita voluptate quidem dignissimos tenetur placeat optio nemo nulla architecto similique quam nobis, excepturi eum facilis enim itaque harum deserunt!
                             Asperiores tempore eligendi quo magni est beatae quasi ea porro, eum, aperiam optio esse nisi aut, sequi laudantium vel libero ad! Explicabo ab amet cupiditate deleniti, temporibus nisi at laborum?
                             Commodi assumenda adipisci corporis ipsum iusto vero animi voluptatem. Repellat odit at ut repudiandae! Modi saepe distinctio dolorum possimus sequi, voluptatum velit fuga, vero veritatis, soluta molestiae ad culpa dicta!
@@ -124,7 +134,7 @@ export default function DetailsLevel() {
 
                     <div className="flex flex-col w-full bg-white rounded-md p-6 gap-y-6">
                         <div className="flex flex-col gap-y-2">
-                            <h2 className="font-semibold text-purple-700 text-2xl">
+                            <h2 className="font-semibold text-purple-700 text-sm md:text-2xl">
                                 Unités d'enseignements.
                             </h2>
                             <div className="flex h-[2px] bg-purple-700 w-full" />
@@ -135,7 +145,7 @@ export default function DetailsLevel() {
 
                             {
                                 units.map((unit: any, index: number) => (
-                                    <DropDownUnit title={unit.intitule} objectifs={unit.objectifs} description={unit.description} key={index} />
+                                    <DropDownUnit title={unit.intitule} objectifs={unit.objectifs} description={unit.description} key={index} index={++index} />
                                 ))
                             }
 
@@ -146,13 +156,13 @@ export default function DetailsLevel() {
                 <div className="flex flex-col w-full md:w-2/6 gap-y-6 bg-white p-6 rounded-md">
 
                     <div className="flex flex-col gap-y-2">
-                        <h2 className="font-semibold text-purple-700 text-2xl">
+                        <h2 className="font-semibold text-purple-700 text-sm md:text-2xl">
                             Objectifs du niveau.
                         </h2>
                         <div className="flex h-[2px] bg-purple-700 w-full" />
                     </div>
 
-                    <p className="text-justify text-black">
+                    <p className="text-justify text-black text-sm">
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus quae expedita voluptate quidem dignissimos tenetur placeat optio nemo nulla architecto similique quam nobis, excepturi eum facilis enim itaque harum deserunt!
                         Asperiores tempore eligendi quo magni est beatae quasi ea porro, eum, aperiam optio esse nisi aut, sequi laudantium vel libero ad! Explicabo ab amet cupiditate deleniti, temporibus nisi at laborum?
                         Commodi assumenda adipisci corporis ipsum iusto vero animi voluptatem. Repellat odit at ut repudiandae! Modi saepe distinctio dolorum possimus sequi, voluptatum velit fuga, vero veritatis, soluta molestiae ad culpa dicta!

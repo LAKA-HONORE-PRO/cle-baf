@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineMenu, AiOutlineExport  } from "react-icons/ai";
 import { BiChevronDown } from "react-icons/bi";
 import { MdAccountCircle } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
@@ -31,8 +31,11 @@ export default function Navbar() {
                                         <span className="text-sm text-black">
                                             100% en ligne et à votre rythme.
                                         </span>
-                                        <Link to={'https://insamtechs.com/videotheque'} className="text-purple-700 font-semibold px-6 py-2 border-[1px] border:purple-700 hover:text-white hover:bg-purple-700 transition text-sm" target="_blank">
-                                            Accédez à votre vidéothèque
+                                        <Link to={'https://insamtechs.com/videotheque'} className="flex flex-row items-center gap-x-2 px-6 py-2 border-[1px] border-purple-700 rounded-md hover:bg-purple-700 transition text-sm group" target="_blank">
+                                            <span className="text-purple-700 font-semibold group-hover:text-white transition">
+                                                Accédez à votre vidéothèque
+                                            </span>
+                                            <AiOutlineExport className="hidden group-hover:flex animate__animated animate__slideInLeft duration-300 text-white text-xl"/>
                                         </Link>
                                     </div>
 
@@ -119,7 +122,7 @@ export default function Navbar() {
 
 
                     <li>
-                        <NavLink to={'/login'} onClick={()=>setCours(false)} className={`flex flex-row gap-x-2 bg-purpleColor py-2 px-4 rounded-md transition`}>
+                        <NavLink to={'/login'} onClick={()=>setCours(false)} className={`flex flex-row gap-x-2 bg-purple-700 py-2 px-4 rounded-md transition`}>
                             <span className="text-white font-semibold">
                                 Compte
                             </span>
@@ -238,7 +241,7 @@ export default function Navbar() {
 
 
                         <li>
-                            <NavLink to={'/login'} onClick={() => setMobileNav(!mobileNav)} className={`flex flex-row gap-x-2 bg-purpleColor py-2 px-4 rounded-md transition`}>
+                            <NavLink to={'/login'} onClick={() => setMobileNav(!mobileNav)} className={`flex flex-row gap-x-2 bg-purple-700 py-2 px-4 rounded-md transition`}>
                                 <span className="text-white font-semibold">
                                     Compte
                                 </span>

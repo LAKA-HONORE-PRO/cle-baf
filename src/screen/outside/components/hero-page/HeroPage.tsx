@@ -7,7 +7,7 @@ export default function HeroPage({title}: HeroType) {
             <div className="absolute w-full h-[200px] bg-black/50" />
 
             <div className="absolute flex flex-row w-full z-10 justify-center items-center h-[200px]">
-                <h2 className="text-3xl font-semibold text-center text-white shadow-2xl shadow-black animate__animated animate__bounce">
+                <h2 className="text-xl md:text-3xl font-semibold text-center text-white shadow-2xl shadow-black animate__animated animate__bounce">
                     {
                         title
                     }

@@ -3,21 +3,22 @@ import { PiPlusCircle } from "react-icons/pi"
 import BlocContent from "../bloc-content/BlocContent";
 
 type DropDownUnitProps = {
+    index: number
     title: string,
     description?: string,
     objectifs?: string
 }
 
-export default function DropDownUnit({ title, description, objectifs }: DropDownUnitProps) {
+export default function DropDownUnit({ title, description, objectifs, index }: DropDownUnitProps) {
     const [content, setContent] = useState(false);
 
     return (
         <div className={`flex flex-col w-full border-b-[1px] bg-gray-100 border-gray-300 `}>
             <div className={`flex flex-row w-full h-full justify-between px-6 py-3 items-center cursor-pointer ${content ? 'bg-purple-700 text-white' : 'bg-gray-200'} transition`} onClick={() => setContent(!content)}>
-                <span className={`${content ? 'text-white' : 'text-black'} font-semibold`}>
-                    {title}
+                <span className={`${content ? 'text-white' : 'text-black'} font-semibold text-sm`}>
+                    {index} -  {title}
                 </span>
-                <PiPlusCircle className={`text-2xl ${content ? 'rotate-45' : ''} duration-300`} />
+                <PiPlusCircle className={`text-sm ${content ? 'rotate-45' : ''} duration-300`} />
             </div>
 
             {
