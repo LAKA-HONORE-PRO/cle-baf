@@ -78,10 +78,10 @@ export default function Register() {
     }
 
     return (
-        <div className="flex flex-col w-full h-auto justify-center items-center px-6 md:px-80 p gap-y-3 py-32 animate__animated animate__fadeIn">
+        <div className="flex flex-col w-full h-auto justify-center items-center px-6 md:px-80 p gap-y-3 py-10 md:py-32 animate__animated animate__fadeIn">
 
             <Link to={'/'} className="flex flex-col w-full justify-center items-start px-6 md:px-40">
-                <img src="assets/img/logo.png" className="w-32" alt="Logo" />
+                <img src="/assets/img/logo.png" className="w-32" alt="Logo" />
             </Link>
             <div className="flex flex-col w-full justify-center items-start px-6 md:px-40">
                 <h2 className="text-start text-xl font-semibold">Créer un compte.</h2>

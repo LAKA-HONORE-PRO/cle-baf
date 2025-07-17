@@ -11,7 +11,7 @@ export default function Login() {
         <div className="flex flex-col w-full h-auto justify-center items-center px-6 md:px-80 p gap-y-3 py-32 animate__animated animate__fadeIn">
 
             <Link to={'/'} className="flex flex-col w-full justify-center items-start px-6 md:px-40">
-                <img src="assets/img/logo.png" className="w-32" alt="Logo" />
+                <img src="/assets/img/logo.png" className="w-32" alt="Logo" />
             </Link>
             <div className="flex flex-col w-full justify-center items-start px-6 md:px-40">
                 <h2 className="text-start text-xl font-semibold">Connexion.</h2>
@@ -28,7 +28,7 @@ export default function Login() {
 
                 <div className="flex flex-col w-full justify-center items-center">
                     <input type={`${showPassword ? 'text' : 'password'}`} className="border-[1px] border-gray-900 hover:border-[2px] focus:border-purple-700 transition-all px-4 py-2 rounded-md placeholder:text-black focus:placeholder:text-purple-700 w-full outline-none"
-                        name="email" id="email" placeholder="Mot de passe" required
+                        name="password" id="password" placeholder="Mot de passe" required
                     />
                     <div className="absolute right-[15%] md:right-[30%] cursor-pointer" onClick={()=>setShowPassword(!showPassword)}>
                         {

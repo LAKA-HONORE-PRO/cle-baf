@@ -5,6 +5,7 @@ import About from "../src/screen/outside/about/About";
 import Login from "../src/screen/login/Login";
 import Register from "../src/screen/register/Register";
 import NotFound from "../src/screen/outside/notfound/NotFound";
+import DetailsLevel from "../src/screen/outside/details-level/DetailsLevel";
 
 const router = createBrowserRouter([
     {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
             {
                 path: "/about",
                 element: <About />
+            },
+            {
+                path: "/details-level/:slug",
+                element: <DetailsLevel />
             }
         ]
     },
