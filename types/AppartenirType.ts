@@ -1,5 +1,5 @@
-import { LevelType } from "./LevelType";
-import { UserType } from "./UserType";
+import type { LevelType } from "./LevelType";
+import type { UserType } from "./UserType";
 
 export interface AppartenirType {
     id: number,

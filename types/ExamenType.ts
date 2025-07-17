@@ -1,4 +1,4 @@
-import { QuestionType } from "./QuestionType";
+import type { QuestionType } from "./QuestionType";
 
 export interface ExamenType {
     id: number,

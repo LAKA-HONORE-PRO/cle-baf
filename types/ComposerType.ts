@@ -1,4 +1,4 @@
-import { ExamenType } from './ExamenType'
+import type { ExamenType } from './ExamenType'
 import type {UserType} from './UserType'
 
 export interface ComposerType {

@@ -2,9 +2,25 @@ import { Link, useParams } from "react-router-dom";
 import HeroPage from "../components/hero-page/HeroPage";
 import DropDownUnit from "./components/dropdown-unit/DropDownUnit";
 import { BiLogIn } from "react-icons/bi";
+import { FetchService } from "../../../../utils/fetchServices";
+import { useQuery } from "@tanstack/react-query";
+import Loader from "../../loader/Loader";
 
 export default function DetailsLevel() {
     const { slug } = useParams();
+
+    async function getLevels() {
+        const response = await FetchService.fetch("levels", "get");
+        if (response.error) {
+            console.log(response);
+        }
+
+        return response.datas;
+    }
+
+    const { isLoading, data } = useQuery({ queryKey: ["levels"], queryFn: getLevels });
+
+    if (isLoading || !data) return <Loader />
 
     const units = [
         {

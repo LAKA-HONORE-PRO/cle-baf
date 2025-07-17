@@ -1,4 +1,4 @@
-import { LessonType } from './LessonType';
+import type { LessonType } from './LessonType';
 import type {LevelType} from './LevelType';
 
 export interface UnitType{

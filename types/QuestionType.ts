@@ -1,5 +1,5 @@
-import { AnswerType } from "./AnswerType";
-import { ExamenType } from "./ExamenType";
+import type { AnswerType } from "./AnswerType";
+import type { ExamenType } from "./ExamenType";
 
 export interface QuestionType {
     id: number,

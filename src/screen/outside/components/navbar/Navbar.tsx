@@ -6,12 +6,11 @@ import { Link, NavLink } from "react-router-dom";
 import { FetchService } from "../../../../../utils/fetchServices";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../../../loader/Loader";
+import type { LevelType } from "../../../../../types/LevelType"
 
 export default function Navbar() {
     const [mobileNav, setMobileNav] = useState(false);
     const [cours, setCours] = useState(false);
-    const description = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga repellendus distinctio repudiandae. Eveniet, illum sunt laboriosam amet consequuntur odit molestias voluptatibus tempora dicta en";
-
 
     async function getLevels() {
         const response = await FetchService.fetch("levels", "get");
@@ -25,7 +24,6 @@ export default function Navbar() {
     const { isLoading, data } = useQuery({ queryKey: ["levels"], queryFn: getLevels });
 
     if (isLoading || !data) return <Loader />
-
 
     return (
         <>
@@ -57,45 +55,23 @@ export default function Navbar() {
                                         </Link>
                                     </div>
 
+                                    {
+                                        data.data.map((level: LevelType, index: number) => (
 
-                                    <Link to={'/details-level/niveau-debutant'} onClick={() => setCours(!cours)} className="flex flex-col gap-y-2 hover:bg-gray-300 justify-center transition-all items-start p-3 rounded-md">
-                                        <h2 className="font-semibold text-purple-700 text-xl">
-                                            Niveau débutant
-                                        </h2>
-                                        <span className="text-sm text-black text-justify">
-                                            {
-                                                description.slice(0, 150) + "..."
-                                            }
-                                        </span>
+                                            <Link key={index} to={'/details-level/' + level.slug} onClick={() => setCours(!cours)} className="flex flex-col gap-y-2 hover:bg-gray-300 justify-center transition-all items-start p-3 rounded-md">
+                                                <h2 className="font-semibold text-purple-700 text-xl">
+                                                    {level.intitule}
+                                                </h2>
+                                                <span className="text-sm text-black text-justify">
+                                                    {
+                                                        level.description.slice(0, 150) + "..."
+                                                    }
+                                                </span>
 
-                                    </Link>
+                                            </Link>
+                                        ))
+                                    }
 
-
-                                    <Link to={'/details-level/niveau-intermediaire'} onClick={() => setCours(!cours)} className="flex flex-col gap-y-2 hover:bg-gray-300 justify-center transition-all items-start p-3 rounded-md">
-                                        <h2 className="font-semibold text-purple-700 text-xl">
-                                            Niveau intermédiaire
-                                        </h2>
-                                        <span className="text-sm text-black text-justify">
-                                            {
-                                                description.slice(0, 150) + "..."
-                                            }
-                                        </span>
-
-                                    </Link>
-
-
-
-                                    <Link to={'/details-level/niveau-expert'} onClick={() => setCours(!cours)} className="flex flex-col gap-y-2 hover:bg-gray-300 justify-center items-start p-3 transition-all rounded-md">
-                                        <h2 className="font-semibold text-purple-700 text-xl">
-                                            Niveau expert
-                                        </h2>
-                                        <span className="text-sm text-black text-justify">
-                                            {
-                                                description.slice(0, 150) + "..."
-                                            }
-                                        </span>
-
-                                    </Link>
                                 </div>
 
                                 <div onClick={() => setCours(!cours)} className="flex-1 w-full bg-black/50 cursor-pointer" />
@@ -202,45 +178,22 @@ export default function Navbar() {
                                                     </Link>
                                                 </div>
 
+                                                {
+                                                    data.data.map((level: LevelType, index: number) => (
 
-                                                <Link to={'/details-level/niveau-intermediaire'} onClick={() => setMobileNav(!mobileNav)} className="flex flex-col gap-y-2 hover:bg-gray-300 justify-center items-start p-3 rounded-md">
-                                                    <h2 className="font-semibold text-purple-700 text-xl">
-                                                        Niveau débutant
-                                                    </h2>
-                                                    <span className="text-sm text-black text-justify">
-                                                        {
-                                                            description.slice(0, 150) + "..."
-                                                        }
-                                                    </span>
+                                                        <Link key={index} to={'/details-level/' + level.slug} onClick={() => setMobileNav(!mobileNav)} className="flex flex-col gap-y-2 hover:bg-gray-300 justify-center transition-all items-start p-3 rounded-md">
+                                                            <h2 className="font-semibold text-purple-700 text-xl">
+                                                                {level.intitule}
+                                                            </h2>
+                                                            <span className="text-sm text-black text-justify">
+                                                                {
+                                                                    level.description.slice(0, 150) + "..."
+                                                                }
+                                                            </span>
 
-                                                </Link>
-
-
-                                                <Link to={'/details-level/niveau-intermediaire'} onClick={() => setMobileNav(!mobileNav)} className="flex flex-col gap-y-2 hover:bg-gray-300 justify-center items-start p-3 rounded-md">
-                                                    <h2 className="font-semibold text-purple-700 text-xl">
-                                                        Niveau intermédiaire
-                                                    </h2>
-                                                    <span className="text-sm text-black text-justify">
-                                                        {
-                                                            description.slice(0, 150) + "..."
-                                                        }
-                                                    </span>
-
-                                                </Link>
-
-
-
-                                                <Link to={'/details-level/niveau-intermediaire'} onClick={() => setMobileNav(!mobileNav)} className="flex flex-col gap-y-2 hover:bg-gray-300 justify-center items-start p-3 rounded-md">
-                                                    <h2 className="font-semibold text-purple-700 text-xl">
-                                                        Niveau expert
-                                                    </h2>
-                                                    <span className="text-sm text-black text-justify">
-                                                        {
-                                                            description.slice(0, 150) + "..."
-                                                        }
-                                                    </span>
-
-                                                </Link>
+                                                        </Link>
+                                                    ))
+                                                }
                                             </div>
 
                                         </div>
