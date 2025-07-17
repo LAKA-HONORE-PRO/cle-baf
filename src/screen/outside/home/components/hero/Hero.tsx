@@ -5,7 +5,7 @@ export default function Hero(){
 
             <div className="absolute flex flex-col w-full h-full justify-center items-center z-10 px-6 gap-y-16">
                 <div className="flex flex-col justify-center items-center gap-y-5">
-                    <h2 className="text-3xl text-center md:text-5xl font-semibold text-white animate__animated animate__pulse">Centre Linguistique de L'estuaire.</h2>
+                    <h2 className="text-3xl text-center md:text-5xl font-semibold title-font text-white animate__animated animate__pulse">Centre Linguistique de L'estuaire.</h2>
                     <h2 className="text-xl text-center md:text-2xl italic text-white animate__animated animate__slideInLeft">
                         Transformez votre avenir grâce aux langues !
                     </h2>
