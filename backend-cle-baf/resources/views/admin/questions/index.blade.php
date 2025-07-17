@@ -1,10 +1,11 @@
+@extends('layouts.app')
 
 @section('content')
 <div class="container mx-auto px-4 py-6">
     <div class="flex justify-between items-center mb-6">
-        <h1 class="text-2xl font-bold">Composition des Examens</h1>
+        <h1 class="text-2xl font-bold">Listes des Questions</h1>
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Ajouter une Relation
+            Ajouter une question
         </button>
     </div>
 
@@ -13,10 +14,16 @@
             <thead>
                 <tr>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Question
+                        Étudiant
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Examen
+                        Niveau
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        Date Inscription
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        Statut
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         Actions
@@ -24,13 +31,19 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($composers as $composer)
+                @foreach($appartenirs as $appartenir)
                 <tr>
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        {{ Str::limit($composer->question->intitule ?? 'N/A', 50) }}
+                        {{ $appartenir->student->nom }} {{ $appartenir->student->prenom }}
                     </td>
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        {{ $composer->examen->intitule ?? 'N/A' }}
+                        {{ $appartenir->level->intitule ?? 'N/A' }}
+                    </td>
+                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        {{ $appartenir->date_inscription->format('d/m/Y') }}
+                    </td>
+                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        {{ $appartenir->statut }}
                     </td>
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <button class="text-blue-500 hover:text-blue-700 mr-2">
