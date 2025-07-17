@@ -28,7 +28,8 @@ class ApiAdminController extends Controller
     // Levels
     public function indexLevels(Request $request)
     {
-        $levels = Level::all();
+        // Load levels with their units and appartenirs;
+        $levels = Level::with(['units', 'appartenirs'])->get();
         return response()->json([
             'data' => LevelResource::collection($levels)
         ]);
@@ -65,6 +66,17 @@ class ApiAdminController extends Controller
         $level->delete();
         return response()->json(['message' => 'Level deleted']);
     }
+
+    public function showLevelBySlug($slug)
+{
+    $level = Level::with(['units', 'appartenirs'])->where('slug', $slug)->firstOrFail();
+    
+    if (request()->expectsJson()) {
+        return new LevelResource($level);
+    }
+    
+    return view('admin.levels.show', compact('level'));
+}
 
     // Students
     public function indexStudents(Request $request)
@@ -115,6 +127,17 @@ class ApiAdminController extends Controller
         $student->delete();
         return response()->json(['message' => 'Student deleted']);
     }
+
+    public function showStudentBySlug($slug)
+{
+    $level = Student::all()->where('slug', $slug)->firstOrFail();
+    
+    if (request()->expectsJson()) {
+        return new LevelResource($level);
+    }
+    
+    return view('admin.student.show', compact('level'));
+}
 
     // Units
     public function indexUnits(Request $request)

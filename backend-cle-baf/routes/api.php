@@ -4,25 +4,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApiAdminController;
 
-// Levels Routes
-Route::get('/api/levels', [ApiAdminController::class, 'indexLevels'])->name('api.levels');
-Route::post('/api/levels', [ApiAdminController::class, 'storeLevel'])->name('api.levels.store');
-Route::put('/api/levels/{id}', [ApiAdminController::class, 'updateLevel'])->name('api.levels.update');
-Route::delete('/api/levels/{id}', [ApiAdminController::class, 'destroyLevel'])->name('api.levels.destroy');
-
-
 Route::prefix('api')->group(function () {
     // Levels
     Route::get('/levels', [ApiAdminController::class, 'indexLevels']);
     Route::post('/levels', [ApiAdminController::class, 'storeLevel']);
     Route::put('/levels/{id}', [ApiAdminController::class, 'updateLevel']);
     Route::delete('/levels/{id}', [ApiAdminController::class, 'destroyLevel']);
+    Route::get('/levels/slug/{slug}', [ApiAdminController::class, 'showLevelBySlug']);
 
     // Students
     Route::get('/students', [ApiAdminController::class, 'indexStudents']);
     Route::post('/students', [ApiAdminController::class, 'storeStudent']);
     Route::put('/students/{id}', [ApiAdminController::class, 'updateStudent']);
     Route::delete('/students/{id}', [ApiAdminController::class, 'destroyStudent']);
+    Route::get('/student/slug/{slug}', [ApiAdminController::class, 'showStudentBySlug']);
 
     // Units
     Route::get('/units', [ApiAdminController::class, 'indexUnits']);
